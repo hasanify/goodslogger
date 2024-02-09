@@ -16,6 +16,7 @@ RUN npm prune --omit=dev
 FROM base
 
 COPY --from=build /express/dist/ /express/src/
+COPY --from=build /express/node_modules/ /express/node_modules/
 COPY --from=build /express/package*.json /express/
 COPY --from=build /express/process.json /express/process.json 
 
