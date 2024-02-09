@@ -3,6 +3,6 @@ import Controllers from '~controllers';
 
 const router = express.Router();
 
-router.get('/', Controllers.DeviceControllers.get);
+router.get('/:id', Controllers.DeviceControllers.get);
 
 export default router;
