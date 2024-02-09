@@ -5,6 +5,7 @@ export class DeviceServices {
       device: {
         device_id: `device_${id}`,
         device_name: 'Test',
+        description: Math.random().toString(),
       },
     };
   }
