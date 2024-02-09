@@ -1,0 +1,9 @@
+{
+  "script": "./src/index.js",
+  "log_date_format": "DD-MM HH:mm:ss.SSS Z",
+  "instances": 4,
+  "name": "GoodsLoggerAPI",
+  "env": {
+    "NODE_ENV": "production"
+  }
+}
