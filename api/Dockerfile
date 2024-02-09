@@ -1,16 +1,22 @@
-FROM node:21-alpine
-
+# BASE STAGE
+FROM node:21-alpine as base
 WORKDIR /express
 
+# BUILD STAGE
+FROM base as build
+
 RUN npm install pm2@5.3.1 -g
-
-EXPOSE 3000
-
-COPY package*.json ./
+COPY --link . .
 RUN npm ci
+RUN npm run build
 
-COPY process.json process.json 
-COPY dist/ src/
+RUN npm prune --omit=dev
 
+# RUNNER STAGE
+FROM base
+
+COPY --from=build /express/dist/ /express/src/
+COPY --from=build /express/package*.json /express/
+COPY --from=build /express/process.json /express/process.json 
 
 CMD [ "pm2-runtime", "start", "process.json"]
