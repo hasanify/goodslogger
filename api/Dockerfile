@@ -13,7 +13,7 @@ RUN npm run build
 RUN npm prune --omit=dev
 
 # RUNNER STAGE
-FROM base
+FROM base as runner
 
 COPY --from=build /express/dist/ /express/src/
 COPY --from=build /express/node_modules/ /express/node_modules/
